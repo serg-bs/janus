@@ -1,0 +1,4 @@
+# node
+docker run -i -t -e JANUS_SERVER=https://192.168.4.134:8089/janus -p 0.0.0.0:443:443/tcp 2f55 /bin/bash
+# janus
+docker run -i -t -p 0.0.0.0:8088:8088 -p 0.0.0.0:8089:8089 -p 127.0.0.1:7889:7889 acc9 /bin/bash

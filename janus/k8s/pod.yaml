@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: janus
+  labels:
+    app: janus
+spec:
+  containers:
+    - name: janus
+      image: serg-bs/janus
+      imagePullPolicy: IfNotPresent
+  restartPolicy: Always
