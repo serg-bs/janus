@@ -7,6 +7,13 @@ metadata:
 spec:
   containers:
     - name: janus
-      image: serg-bs/janus
+      image: sergbs/janus
       imagePullPolicy: IfNotPresent
+      env:
+        - name: JANUS_SERVER
+          value: https://192.168.4.134:8089/janus
+      ports:
+        - containerPort: 443
   restartPolicy: Always
+  imagePullSecrets:
+    - name: regcred

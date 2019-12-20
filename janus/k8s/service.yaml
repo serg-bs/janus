@@ -6,5 +6,5 @@ spec:
   selector:
     app: janus
   ports:
-    - port: 8080
-  type: NodePort
+    - port: 443
+  type: LoadBalancer
