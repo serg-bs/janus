@@ -6,4 +6,18 @@ env:
   global:
     - CLOUDSDK_CORE_DISABLE_PROMTS=1
 before_install:
-  - echo hello
+  - echo 'Hello world'
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in gcloud-account.json.enc -out gcloud-account.json -d
+  - curl http://sdk.cloud.google.com | bash > /dev/null;
+  - source @HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project janus-262604
+  - gcloud config set compute/zone europe-west6-c
+  - gcloud container clusters get-credentials standard-cluster-1
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
